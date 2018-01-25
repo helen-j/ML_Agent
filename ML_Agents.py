@@ -122,6 +122,88 @@ if __name__== "__main__":
     #
     # until terminated
 
+#state numbers reflect computer e.g., first might be firewall active?
+initialState = [1,0,1,1]
+finalState = [0,1,0,0]
+
+1000
+
+
+
+
+[0,1,1,0]
+900
+
+
+
+[0,1,1,1]
+810
+
+
+
+
+state=[]
+Qtable=#array of zeros
+solved = False
+
+def updateState(action):
+    #change state vector
+    #based on action
+    if state[action] ==1:
+        state[action]==0
+    else:
+        state[action]==1
+
+def checkSolved():
+    if (state == finalState):
+        solved=True
+        return 1000
+    else
+        return 0
+
+def initializeState():
+    state=initialState
+    solved=False
+
+def explore(agent):
+    initializeState()
+
+
+    counter=0
+    while (not solved):
+        currentAction = agent.randomAction()
+        updateState(currentAction)
+        checkSolved()
+
+        counter=counter+1
+
+        #agent.reward = (calculateQ())
+
+
+        ####Q learning formula Q(s,a) = Rimm + GAMMA*Q(s,a)-1
+
+
+def exploit(agent):
+    initializeState()
+
+    counter = 0
+    while (not solved):
+        currentAction = agent.bestAction(qtable)
+        updateState(currentAction)
+        immreward = checkSolved()
+        agent.reward = (calculateQ(immreward))
+
+        counter = counter + 1
+    pass
+
+#main
+numtrials=100
+agent a()
+for i in numtrials:
+    if i%2==0:
+        explore(agent)
+    else:
+        exploit(agent)
 
 
 
