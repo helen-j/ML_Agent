@@ -5,11 +5,12 @@ Code@
 
 """
 
+import numpy as np
 import timeit
 import random
 import AgentClass
 import EnvironmentClass
-import NeuralNet
+#import NeuralNet
 
 #import neat-python
 
@@ -17,26 +18,93 @@ import NeuralNet
 # Parameters
 # =========================
 
-MAXACTIONS  = 1000
-MAXTURNS    = 1000
-GAMMA       = 0.9
+#MAXACTIONS  = 100
+#MAXTURNS    = 100
+#GAMMA       = 0.9
 
-agentList   = [1,2]
+# agentList   = [1,2]
 
-possibleRedActions = [ 1,2,3,4,5,6,7,8,9
+# possibleRedActions = [ 1,2,3,4,5,6,7,8,9
 #        "Scan the Network>",
 #        "Scan the Computer>",
 #        "Scan for open Ports>",
 #        "Copy File to start folder>",
 #        "Shutdown Computer>"
-             ]
+#             ]
 
+
+numtrials   = 100
+initialState = [1,0,1,1]
+finalState = [0,1,0,0]
 completedActions = []
+state = []
+qtable = []
+solved = False
 
-qTable = [1,5,21,12,18,1,2,156,4,"asdf"]
+
+#qTable = [1,5,21,12,18,1,2,156,4,"asdf"]
 
 
 # ---------------------------------------------------------------------
+
+
+
+def updateState(action):
+    #change state vector
+    #based on action
+    if state[action] ==1:
+        state[action]==0
+    else:
+        state[action]==1
+
+def checkSolved():
+    if (state == finalState):
+        solved=True
+        return 1000
+    else :
+        return 0
+
+def initializeState():
+    state=initialState
+    solved=False
+
+def explore(agent):
+    initializeState()
+
+    counter=0
+    while (not solved):
+        currentAction = agent.randomAction()
+        updateState(currentAction)
+        checkSolved()
+
+        counter=counter+1
+
+        #agent.reward = (calculateQ())
+
+
+        ####Q learning formula Q(s,a) = Rimm + GAMMA*Q(s,a)-1
+
+
+def exploit(agent):
+    initializeState()
+
+    counter = 0
+    while (not solved):
+        currentAction = agent.bestAction(qtable)
+        updateState(currentAction)
+        immreward = checkSolved()
+        agent.reward = (calculateQ(immreward))
+
+        counter = counter + 1
+    pass
+
+
+def calculateQ(agent, state, action, immreward):
+
+    pass
+
+
+
 
 def main():
     # =========================
@@ -51,31 +119,42 @@ def main():
 
     redAgent = AgentClass.Agent()
     computer = EnvironmentClass.Environment()
+    qtable = np.zeros(computer.state_action_dim, dtype=np.float)#array of zeros
 
     # =========================
     # Train agent
     # =========================
+    """
+       # for x in range(MAXTURNS):
+    
+          #  for x in agentList:
+             #  # '''# 1. Check state '''
+    
+               # '''# 2. Choose action '''
+                #a = random.choice(possibleRedActions)
+    
+               # '''# 3. Perform Action '''
+                #completedActions.append([x, redAgent.chooseAction(x)])
+    
+               # ''' #1. Check state '''
+    
+               # '''# 4. Get Reward '''
+    
+        #        calculateQValues(red.qTable)
+    """
 
-    for x in range(MAXTURNS):
 
-        for x in agentList:
-            ''' 1. Check state '''
+    for i in numtrials:
+        if i % 2 == 0:
+            explore(redAgent)
+        else:
+            exploit(redAgent)
 
-            ''' 2. Choose action '''
-            a = random.choice(possibleRedActions)
 
-            ''' 3. Perform Action '''
-            completedActions.append([x, redAgent.chooseAction(x)])
-
-            ''' 1. Check state '''
-
-            ''' 4. Get Reward '''
-
-    #        calculateQValues(red.qTable)
 
 
     end = timeit.timeit()
-    print(end - start)
+
 
 
 # =========================
@@ -123,91 +202,3 @@ if __name__== "__main__":
     # until terminated
 
 #state numbers reflect computer e.g., first might be firewall active?
-initialState = [1,0,1,1]
-finalState = [0,1,0,0]
-
-1000
-
-
-
-
-[0,1,1,0]
-900
-
-
-
-[0,1,1,1]
-810
-
-
-
-
-state=[]
-Qtable=#array of zeros
-solved = False
-
-def updateState(action):
-    #change state vector
-    #based on action
-    if state[action] ==1:
-        state[action]==0
-    else:
-        state[action]==1
-
-def checkSolved():
-    if (state == finalState):
-        solved=True
-        return 1000
-    else
-        return 0
-
-def initializeState():
-    state=initialState
-    solved=False
-
-def explore(agent):
-    initializeState()
-
-
-    counter=0
-    while (not solved):
-        currentAction = agent.randomAction()
-        updateState(currentAction)
-        checkSolved()
-
-        counter=counter+1
-
-        #agent.reward = (calculateQ())
-
-
-        ####Q learning formula Q(s,a) = Rimm + GAMMA*Q(s,a)-1
-
-
-def exploit(agent):
-    initializeState()
-
-    counter = 0
-    while (not solved):
-        currentAction = agent.bestAction(qtable)
-        updateState(currentAction)
-        immreward = checkSolved()
-        agent.reward = (calculateQ(immreward))
-
-        counter = counter + 1
-    pass
-
-#main
-numtrials=100
-agent a()
-for i in numtrials:
-    if i%2==0:
-        explore(agent)
-    else:
-        exploit(agent)
-
-
-
-
-
-
-

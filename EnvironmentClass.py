@@ -27,6 +27,10 @@ class Environment:
 
         raise NotImplementedError
 
+    def state_action_dim(self):
+
+        raise NotImplementedError
+
 
 
 # ---------------------------------------------------------------------

@@ -35,6 +35,17 @@ class Agent:
         self.currentAction = 0
         self.currentReward = 0
 
+        # State and Action space
+        self.possibleActions = {"open port 80": 0, "close port 80": 1, "down": 2, "left": 3}
+        self.action_coords = np.array([[-1, 0], [0, 1], [1, 0], [0, -1]], dtype=np.int)
+        self.possibleActions = []
+
+
+        self.N_actions = len(self.action_dict.keys())
+
+    def randomAction(self):
+        random.choice(possibleActions)
+
 
     def chooseAction(self, currentState):
         # Method to select the next action based on the currentState
