@@ -29,15 +29,12 @@ FIND A REFERENCE FOR THIS
 
 
 
-References
+# References
 
-    Solving the Hunter-Prey problem as a single-agent problem Anson Wong | Github
+* Solving the Hunter-Prey problem as a single-agent problem [Anson Wong](https://towardsdatascience.com/solving-the-hunter-prey-problem-as-a-single-agent-problem-using-relative-coordinates-31c3b1daf441) |  [Github](https://github.com/ankonzoid/Deep-Reinforcement-Learning-Tutorials/tree/master/hunterprey)
 
-    A collection of Deep Reinforcement Learning algorithms implemented in tensorflow. Very extensible. High performing DQN implementation. Carles Gelada | Github
+* A collection of Deep Reinforcement Learning algorithms implemented in tensorflow. Very extensible. High performing DQN implementation. Carles Gelada | [Github](https://github.com/cgel/DRL)
 
-    Simple Reinforcement Learning with Tensorflow: Part 0 - Q-Tables Arthur Juliani | Github
+* Simple Reinforcement Learning with Tensorflow: Part 0 - Q-Tables [Arthur Juliani](https://medium.com/emergent-future/simple-reinforcement-learning-with-tensorflow-part-0-q-learning-with-tables-and-neural-networks-d195264329d0) | [Github](https://github.com/awjuliani/DeepRL-Agents/blob/master/Q-Table.ipynb)
 
-    Simple Reinforcement Learning with Tensorflow Part 4: Deep Q-Networks and Beyond Arthur Juliani | Github
-
-
-
+* Simple Reinforcement Learning with Tensorflow Part 4: Deep Q-Networks and Beyond  [Arthur Juliani](https://medium.com/@awjuliani/simple-reinforcement-learning-with-tensorflow-part-4-deep-q-networks-and-beyond-8438a3e2b8df) | [Github](https://github.com/awjuliani/DeepRL-Agents/blob/master/Q-Exploration.ipynb)
