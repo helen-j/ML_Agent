@@ -26,3 +26,18 @@ FIND A REFERENCE FOR THIS
     #   s=s'
     #
     # until terminated
+
+
+
+References
+
+    Solving the Hunter-Prey problem as a single-agent problem Anson Wong | Github
+
+    A collection of Deep Reinforcement Learning algorithms implemented in tensorflow. Very extensible. High performing DQN implementation. Carles Gelada | Github
+
+    Simple Reinforcement Learning with Tensorflow: Part 0 - Q-Tables Arthur Juliani | Github
+
+    Simple Reinforcement Learning with Tensorflow Part 4: Deep Q-Networks and Beyond Arthur Juliani | Github
+
+
+
