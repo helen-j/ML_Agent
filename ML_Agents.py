@@ -18,11 +18,10 @@ import EnvironmentClass
 # Parameters
 # =========================
 
-#MAXACTIONS  = 100
-#MAXTURNS    = 100
-#GAMMA       = 0.9
-
-# agentList   = [1,2]
+#MAXACTIONS = 100
+#MAXTURNS   = 100
+#GAMMA      = 0.9
+#EPSILON    =
 
 # possibleRedActions = [ 1,2,3,4,5,6,7,8,9
 #        "Scan the Network>",
@@ -77,8 +76,8 @@ def explore(agent):
     counter=0
     while (not solved):
         currentAction = agent.randomAction()
-        updateState(currentAction)
-        checkSolved()
+        currentState = updateState(currentAction)
+        checkSolved(currentState)
 
         counter=counter+1
 
@@ -100,7 +99,8 @@ def exploit(agent):
         currentAction = agent.bestAction(qtable)
 
         updateState(currentAction)
-        immreward = checkSolved()
+        currentState = updateState(currentAction)
+        immreward = checkSolved(currentState)
         agent.reward = (calculateQ(immreward))
 
         counter = counter + 1
@@ -111,6 +111,11 @@ def calculateQ(agent, state, action, immreward):
 
     pass
 
+def checkSolved(currentAction):
+    if (currentAction == finalState):
+        return True
+    else:
+        return False
 
 
 
@@ -184,30 +189,5 @@ def main():
 
 
 
-    # Deep Q-Learning Algorithm
-    #
-    # Initialise replayActions (D)
-    # Initialise action-value table Q with random weights
-    #
-    # observe initial state (s)
-    #
-    # repeat
-    #   select an action (a)
-    #       with a probability of G? select a random action (a)
-    #       OR select
-    #   do action (a)
-    #   observe reward (r)
-    #   observe new state (s')
-    #   store <s, a, r, s'> in replayActions (D)
-    #
-    #   sample random transitions <ss, aa, rr, ss'> from replayActions (D)
-    #   calculate target for each minibatch transition (tt)
-    #       if ss' is terminal state then tt = rr
-    #       otherwise tt = rr + ymax a' Q(ss', aa,)
-    #   train the Q network using (tt - Q(ss, aa)) as loss
-    #
-    #   s=s'
-    #
-    # until terminated
 
 #state numbers reflect computer e.g., first might be firewall active?
