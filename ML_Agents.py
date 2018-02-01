@@ -32,17 +32,20 @@ import EnvironmentClass
 #        "Shutdown Computer>"
 #             ]
 
-
+numstates   = 16
+numactions  = 8
 numtrials   = 100
+
 initialState = [1,0,1,1]
 finalState = [0,1,0,0]
 completedActions = []
 state = []
 qtable = []
 solved = False
+# Initialize Q-table with all zeros
+# Q values will be calculated as state/action are tested
+qtable = np.zeros((numstates, numstates), dtype=np.float)#array of zeros
 
-
-#qTable = [1,5,21,12,18,1,2,156,4,"asdf"]
 
 
 # ---------------------------------------------------------------------
@@ -83,14 +86,19 @@ def explore(agent):
 
 
         ####Q learning formula Q(s,a) = Rimm + GAMMA*Q(s,a)-1
-
+#       Q[s,a] = Q[s,a] + lr*(r + y*np.max(Q[s1,:]) - Q[s,a]) #https://github.com/awjuliani/DeepRL-Agents/blob/master/Q-Table.ipynb
+#
 
 def exploit(agent):
     initializeState()
 
     counter = 0
     while (not solved):
+        # use BEST action (highest Q-value for this state from the qtable
+        # ? Choose an action by greedily (with noise) picking from Q table
+        #currentAction(qtable[s, :]
         currentAction = agent.bestAction(qtable)
+
         updateState(currentAction)
         immreward = checkSolved()
         agent.reward = (calculateQ(immreward))
@@ -119,7 +127,7 @@ def main():
 
     redAgent = AgentClass.Agent()
     computer = EnvironmentClass.Environment()
-    qtable = np.zeros(computer.state_action_dim, dtype=np.float)#array of zeros
+    qtable = np.zeros((numstates, numstates), dtype=np.float)#array of zeros
 
     # =========================
     # Train agent
@@ -158,8 +166,9 @@ def main():
 
 
 # =========================
-if __name__== "__main__":
-    main()
+#if __name__== "__main__":
+#    main()
+#    pass
 
 
 
