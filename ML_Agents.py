@@ -10,7 +10,7 @@ import timeit
 import random
 import AgentClass
 import EnvironmentClass
-#import NeuralNet
+
 
 #import neat-python
 
@@ -83,7 +83,7 @@ def explore(agent):
 
         #agent.reward = (calculateQ())
 
-
+#        Q(state, action) = R(state, action) + Gamma * Max[Q(next state, all actions)] http://mnemstudio.org/path-finding-q-learning-tutorial.htm
         ####Q learning formula Q(s,a) = Rimm + GAMMA*Q(s,a)-1
 #       Q[s,a] = Q[s,a] + lr*(r + y*np.max(Q[s1,:]) - Q[s,a]) #https://github.com/awjuliani/DeepRL-Agents/blob/master/Q-Table.ipynb
 #
